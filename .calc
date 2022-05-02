@@ -34,13 +34,23 @@ def which_button(button_press):
   global out
   global lt
   if button_press == "=":
-    out = button_press
-    calc_screen = screen.cget("text")
-    total = eval(calc_screen)
-    lt = True
-    screen.config(text = total, anchor="se")
-    sqrt = False
-    last = out
+    if sqrt == True:
+      calc_screen = screen.cget("text")
+      sqrt_screen = calc_screen.rpartition("√"[0])
+      total = sqrt_screen[2]
+      total = (eval(f"{total} ** 0.5"))
+      lt = True
+      screen.config(text = total, anchor="se")
+      sqrt = False
+      last = out
+    else:
+      out = button_press
+      calc_screen = screen.cget("text")
+      total = eval(calc_screen)
+      lt = True
+      screen.config(text = total, anchor="se")
+      sqrt = False
+      last = out
   elif button_press == "1":
     screen.config(anchor="nw")
     if lt == True or err == True:
